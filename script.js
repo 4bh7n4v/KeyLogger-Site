@@ -83,7 +83,7 @@ process.stdin.on('keypress', (str, key) => {
             break;
     }
 
-    console.log(`Captured key: ${keyName}`);
+    //console.log(`Captured key: ${keyName}`);
 
     // Send the keypress to the server
     sendToServer(keyName);
