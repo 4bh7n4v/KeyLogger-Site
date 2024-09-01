@@ -12,9 +12,9 @@ To run this Program, we need to have Python installed on your system.
        `pip install -r requirements.txt`  
    4. run the program:  
       `python server.py` or `python3 server.py`
-   5. Open Vscode Application:
+   5. Open Vscode Application:  
       `Install Application Live Server`
-   6.  Run Web page
+   6.  Run Web page:  
        `Select Web.html and fn + f1 and Enter Live Server:Open with Liver Server`
 
 ##Usage
