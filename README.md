@@ -2,7 +2,7 @@
 
 The js-keylogger-generator is a web application that creates a customizable keylogger script. Users can input the URL where the captured keystrokes should be sent and set the time interval for data transmission. The generated script supports standard keyboard characters and includes special keys like Backspace, Tab, Enter, Shift, Ctrl, Alt, Esc, Delete, and Caps Lock. 
 
-##Instllation  
+## Instllation  
 
 To run this Program, we need to have Python installed on your system.
    1. Clone this repository to your local machine:
@@ -18,7 +18,7 @@ To run this Program, we need to have Python installed on your system.
    6.  Run Web page:  
        `Select Web.html and fn + f1 and Enter Live Server:Open with Liver Server`
 
-##Usage  
+## Usage  
 
 1. After cloning the repository, move to the Custom Search Engine in your terminal.
 2. Run the script using the following command:
