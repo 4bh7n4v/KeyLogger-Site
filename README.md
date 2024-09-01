@@ -5,7 +5,7 @@ The js-keylogger-generator is a web application that creates a customizable keyl
 ## Instllation  
 
 To run this Program, we need to have Python installed on your system.
-   1. Clone this repository to your local machine:
+   1. Clone this repository to your local machine:  
       `https://github.com/4bh7n4v/KeyLogger-Site/`
    2. Naviage to the directory:  
        `cd Keylogger-Site`  
